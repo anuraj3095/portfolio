@@ -1,0 +1,64 @@
+{
+	"landing": {
+		"firstName": "Anuraj",
+		"lastName": "Jaiswal",
+		"phoneNumber": "+1(585)532-8335",
+		"bio": "I am a Software Developer with 3+ years of professional development experience working with native windows application development and iOS app development. Proficient in C++, JAVA, Swift, Python, Javascript. Currently pursuing  Masters at Rochester Institute of Technology.",
+    "email": "anuraj.jaiswal21@gmail.com",
+    "linkedin": "https://linkedin.com/in/anurajj",
+		"github": "https://github.com/anuraj3095"
+	},
+	"experience": [
+		{
+				"position": "iOS Developer",
+				"organization": "RIT",
+				"aboutWork": "Responsible for building and maintaining iOS app for iPhones.",
+				"fromDate": "July 2020",
+				"toDate": "Present"
+		},
+		{
+			"position": "Software Engineer",
+			"organization": "Dassault Systemes",
+			"aboutWork": "Worked on windows application using C++ and Java.",
+			"fromDate": "June 2016",
+			"toDate": "July 2019"
+		}
+	],
+	"education": [{
+			"university": "Rochester Institute of Technology",
+			"degree": "Master of Science in Computer Science",
+			"gpa": "4.00",
+			"fromDate": "August 2019",
+			"toDate": "Present"
+		}
+	],
+	"skills": [{
+			"name": "C++"
+		},
+		{
+			"name": "Java"
+		},
+		{
+			"name": "Swift"
+		},
+		{
+			"name": "Python"
+		},
+		{
+			"name": "MongoDB"
+		},
+		{
+			"name": "MySQL"
+		},
+		{
+			"name": "JavaScript"
+		},
+		{
+			"name": "React"
+		}
+	],
+	"interests": {
+		"paragraphOne": "",
+		"paragraphTwo": ""
+	}
+}
