@@ -97,6 +97,14 @@ const experiences = [
 ];
 
 export const Experience: React.FC = () => {
+  const scrollToExperience = (index: number) => {
+    const element = document.getElementById(`exp-${index}`);
+    if (element) {
+      const top = element.getBoundingClientRect().top + window.scrollY - 40;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="experience" className="section container">
       <div style={{ marginBottom: '2rem' }}>
@@ -107,43 +115,137 @@ export const Experience: React.FC = () => {
       </div>
       <h2>Experience</h2>
 
-      <div className="flex flex-col gap-8">
-        {experiences.map((exp, i) => (
-          <div key={i} className="glass-panel" style={{ padding: '2rem' }}>
-            <div className="flex justify-between items-center flex-wrap gap-4" style={{ marginBottom: '2rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '1rem' }}>
-              <div>
-                <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem', color: 'var(--accent-primary)' }}>{exp.company}</h3>
-                <div style={{ fontSize: '1.1rem', fontWeight: 500 }}>{exp.role}</div>
-              </div>
-              <div className="flex flex-col gap-2" style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', textAlign: 'right' }}>
-                <div className="flex items-center justify-end gap-2">
-                  <Calendar size={16} />
-                  <span>{exp.period}</span>
-                </div>
-                <div className="flex items-center justify-end gap-2">
-                  <Briefcase size={16} />
-                  <span>{exp.location}</span>
-                </div>
-              </div>
-            </div>
+      {/* Horizontal Navigation Timeline */}
+      <div className="glass-panel animate-fade-in" style={{ marginBottom: '3rem', padding: '2rem 1.5rem', position: 'relative', overflowX: 'auto' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', minWidth: '600px', position: 'relative', margin: '0 auto', maxWidth: '800px' }}>
+          {/* Horizontal Line */}
+          <div style={{ position: 'absolute', height: '2px', background: 'linear-gradient(90deg, transparent, var(--border-color) 10%, var(--border-color) 90%, transparent)', left: '0', right: '0', top: '6px', zIndex: 0 }}></div>
+          
+          {experiences.map((exp, i) => {
+            const [start, end] = exp.period.split('-').map(s => s.trim());
+            const startYear = start.split(' ').pop();
+            const endYear = end ? end.split(' ').pop() : 'Present';
 
-            <div className="flex flex-col gap-6">
-              {exp.projects.map((proj, j) => (
-                <div key={j}>
-                  <h4 style={{ color: 'var(--text-primary)', marginBottom: '1rem', fontSize: '1.1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <ChevronRight size={18} color="var(--accent-secondary)" />
-                    {proj.name}
-                  </h4>
-                  <ul style={{ listStyleType: 'none', paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                    {proj.points.map((point, k) => (
-                      <li key={k} style={{ color: 'var(--text-secondary)', position: 'relative', lineHeight: 1.6 }}>
-                        <span style={{ position: 'absolute', left: '-1.5rem', color: 'var(--accent-primary)' }}>•</span>
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
+            return (
+              <div 
+                key={i} 
+                onClick={() => scrollToExperience(i)} 
+                style={{ cursor: 'pointer', textAlign: 'center', zIndex: 1, position: 'relative', flex: 1, padding: '0 10px', minWidth: '140px' }}
+                onMouseEnter={(e) => {
+                  const dots = e.currentTarget.querySelectorAll('.nav-dot');
+                  const line = e.currentTarget.querySelector('.nav-line');
+                  dots.forEach(dot => {
+                    (dot as HTMLElement).style.background = 'var(--accent-primary)';
+                    (dot as HTMLElement).style.boxShadow = '0 0 10px rgba(0, 229, 255, 0.5)';
+                  });
+                  if (line) {
+                    (line as HTMLElement).style.background = 'var(--accent-primary)';
+                    (line as HTMLElement).style.boxShadow = '0 0 10px rgba(0, 229, 255, 0.5)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  const dots = e.currentTarget.querySelectorAll('.nav-dot');
+                  const line = e.currentTarget.querySelector('.nav-line');
+                  dots.forEach(dot => {
+                    (dot as HTMLElement).style.background = 'var(--bg-color)';
+                    (dot as HTMLElement).style.boxShadow = 'none';
+                  });
+                  if (line) {
+                    (line as HTMLElement).style.background = 'var(--bg-surface-hover)';
+                    (line as HTMLElement).style.boxShadow = 'none';
+                  }
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem', position: 'relative' }}>
+                  <div 
+                    className="nav-dot" 
+                    style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--bg-color)', border: '2px solid var(--accent-primary)', transition: 'all 0.3s ease', zIndex: 2 }}
+                  ></div>
+                  <div 
+                    className="nav-line"
+                    style={{ flex: 1, height: '4px', background: 'var(--bg-surface-hover)', margin: '0 -2px', transition: 'all 0.3s ease', zIndex: 1 }}
+                  ></div>
+                  <div 
+                    className="nav-dot" 
+                    style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--bg-color)', border: '2px solid var(--accent-primary)', transition: 'all 0.3s ease', zIndex: 2 }}
+                  ></div>
                 </div>
-              ))}
+                <div style={{ color: 'var(--text-primary)', fontWeight: 500, fontSize: '0.9rem', marginBottom: '0.25rem' }}>{exp.company}</div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', fontSize: '0.75rem', padding: '0 4px' }}>
+                  <span>{endYear}</span>
+                  <span>{startYear}</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div style={{ position: 'relative', paddingLeft: '2rem' }} className="flex flex-col gap-8">
+        {/* Timeline Vertical Line */}
+        <div style={{
+          position: 'absolute',
+          left: '0.45rem',
+          top: '2rem',
+          bottom: '2rem',
+          width: '2px',
+          background: 'linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary), transparent)',
+          opacity: 0.5,
+          zIndex: 0
+        }} />
+
+        {experiences.map((exp, i) => (
+          <div key={i} id={`exp-${i}`} style={{ position: 'relative' }} className="animate-fade-in delay-100">
+            {/* Timeline Dot */}
+            <div style={{
+              position: 'absolute',
+              left: '-2rem',
+              top: '2rem',
+              width: '1rem',
+              height: '1rem',
+              borderRadius: '50%',
+              background: 'var(--bg-color)',
+              border: '2px solid var(--accent-primary)',
+              zIndex: 1,
+              boxShadow: '0 0 10px rgba(0, 229, 255, 0.5)'
+            }} />
+
+            <div className="glass-panel" style={{ padding: '2rem' }}>
+              <div className="flex justify-between items-center flex-wrap gap-4" style={{ marginBottom: '2rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '1rem' }}>
+                <div>
+                  <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem', color: 'var(--accent-primary)' }}>{exp.company}</h3>
+                  <div style={{ fontSize: '1.1rem', fontWeight: 500 }}>{exp.role}</div>
+                </div>
+                <div className="flex flex-col gap-2" style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', textAlign: 'right' }}>
+                  <div className="flex items-center justify-end gap-2">
+                    <Calendar size={16} />
+                    <span>{exp.period}</span>
+                  </div>
+                  <div className="flex items-center justify-end gap-2">
+                    <Briefcase size={16} />
+                    <span>{exp.location}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-6">
+                {exp.projects.map((proj, j) => (
+                  <div key={j}>
+                    <h4 style={{ color: 'var(--text-primary)', marginBottom: '1rem', fontSize: '1.1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <ChevronRight size={18} color="var(--accent-secondary)" />
+                      {proj.name}
+                    </h4>
+                    <ul style={{ listStyleType: 'none', paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                      {proj.points.map((point, k) => (
+                        <li key={k} style={{ color: 'var(--text-secondary)', position: 'relative', lineHeight: 1.6 }}>
+                          <span style={{ position: 'absolute', left: '-1.5rem', color: 'var(--accent-primary)' }}>•</span>
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         ))}
