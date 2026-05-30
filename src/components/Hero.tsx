@@ -27,7 +27,7 @@ export const Hero: React.FC = () => {
           <div className="flex gap-4 delay-300 flex-wrap" style={{ marginTop: '2rem' }}>
             <Link to="/experience" className="btn btn-primary">
               <Network size={20} />
-              View Architecture
+              View Experiences
             </Link>
             <Link to="/terminal" className="btn btn-outline">
               <Code size={20} />

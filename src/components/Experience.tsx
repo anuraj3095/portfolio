@@ -105,8 +105,8 @@ export const Experience: React.FC = () => {
           <span>Back to Home</span>
         </Link>
       </div>
-      <h2>Architecture & Experience</h2>
-      
+      <h2>Experience</h2>
+
       <div className="flex flex-col gap-8">
         {experiences.map((exp, i) => (
           <div key={i} className="glass-panel" style={{ padding: '2rem' }}>

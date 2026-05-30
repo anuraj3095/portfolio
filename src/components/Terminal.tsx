@@ -119,7 +119,7 @@ export const Terminal: React.FC = () => {
             gap: '0.5rem'
           }}>
             <TerminalIcon size={14} />
-            anuraj@mesh-control-plane:~
+            anuraj@info:~
           </div>
           <div className="flex gap-2" style={{ color: 'var(--text-muted)' }}>
             <Minus size={14} />
@@ -138,7 +138,7 @@ export const Terminal: React.FC = () => {
           color: 'var(--text-primary)'
         }}>
           <div style={{ color: 'var(--text-secondary)', marginBottom: '1rem' }}>
-            Welcome to AnurajOS v1.0.0 (xDS/Envoy architecture)<br />
+            Welcome !<br />
             Type 'help' to see available commands.
           </div>
 

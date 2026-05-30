@@ -23,7 +23,7 @@ The portfolio is designed to be both a visual showcase and an interactive playgr
 2. **Interactive Terminal:** In the "Interactive Shell" section, you can interact with a simulated command-line interface. 
    - Click the terminal input and type `help` to see available commands.
    - Use commands like `whoami`, `skills`, `experience`, and `clear` to learn more about my background in a developer-friendly way.
-3. **Architecture & Experience Timeline:** Scroll down to view a detailed timeline of my professional experience, optimized with high-impact project bullet points.
+3. ** Experience Timeline:** Scroll down to view a detailed timeline of my professional experience, optimized with high-impact project bullet points.
 
 ## 💻 Local Development
 
