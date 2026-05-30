@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Terminal as TerminalIcon, Maximize2, Minus, X } from 'lucide-react';
+import { Terminal as TerminalIcon, Maximize2, Minus, X, ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface CommandOutput {
   command: string;
@@ -81,6 +82,12 @@ export const Terminal: React.FC = () => {
 
   return (
     <section id="terminal" className="section container">
+      <div style={{ marginBottom: '2rem' }}>
+        <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-secondary)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>
+          <ArrowLeft size={20} />
+          <span>Back to Home</span>
+        </Link>
+      </div>
       <h2>Interactive Shell</h2>
 
       <div className="glass-panel" style={{

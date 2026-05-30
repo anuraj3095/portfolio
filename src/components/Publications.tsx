@@ -1,9 +1,16 @@
 import React from 'react';
-import { BookOpen, ExternalLink, ShieldCheck } from 'lucide-react';
+import { BookOpen, ExternalLink, ShieldCheck, ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export const Publications: React.FC = () => {
   return (
     <section id="publications" className="section container">
+      <div style={{ marginBottom: '2rem' }}>
+        <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-secondary)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>
+          <ArrowLeft size={20} />
+          <span>Back to Home</span>
+        </Link>
+      </div>
       <h2>Publications & Patents</h2>
       
       <div className="glass-panel" style={{ padding: '2.5rem', position: 'relative', overflow: 'hidden' }}>

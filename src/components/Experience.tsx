@@ -1,5 +1,6 @@
 import React from 'react';
-import { Briefcase, Calendar, ChevronRight } from 'lucide-react';
+import { Briefcase, Calendar, ChevronRight, ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const experiences = [
   {
@@ -98,6 +99,12 @@ const experiences = [
 export const Experience: React.FC = () => {
   return (
     <section id="experience" className="section container">
+      <div style={{ marginBottom: '2rem' }}>
+        <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-secondary)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>
+          <ArrowLeft size={20} />
+          <span>Back to Home</span>
+        </Link>
+      </div>
       <h2>Architecture & Experience</h2>
       
       <div className="flex flex-col gap-8">
