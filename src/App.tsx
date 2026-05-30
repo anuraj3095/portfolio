@@ -4,6 +4,7 @@ import { Hero } from './components/Hero';
 import { Terminal } from './components/Terminal';
 import { Experience } from './components/Experience';
 import { Publications } from './components/Publications';
+import { Contact } from './components/Contact';
 
 const App: React.FC = () => {
   return (
@@ -31,6 +32,11 @@ const App: React.FC = () => {
             <Route path="/experience" element={
                <div style={{ position: 'relative', zIndex: 1, paddingBottom: '4rem', paddingTop: '4rem' }}>
                  <Experience />
+               </div>
+            } />
+            <Route path="/contact" element={
+               <div style={{ position: 'relative', zIndex: 1, paddingBottom: '4rem', paddingTop: '4rem' }}>
+                 <Contact />
                </div>
             } />
           </Routes>
