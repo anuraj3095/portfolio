@@ -2,7 +2,21 @@ import React from 'react';
 import { Briefcase, Calendar, ChevronRight, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const experiences = [
+interface Project {
+  name: string;
+  link?: string;
+  points: string[];
+}
+
+interface ExperienceItem {
+  company: string;
+  role: string;
+  location: string;
+  period: string;
+  projects: Project[];
+}
+
+const experiences: ExperienceItem[] = [
   {
     company: 'Google',
     role: 'Senior Software Engineer',
@@ -11,6 +25,7 @@ const experiences = [
     projects: [
       {
         name: 'Regional Traffic Director',
+        link: 'https://cloud.google.com/blog/topics/developers-practitioners/traffic-director-explained',
         points: [
           'Architected and led the implementation of the Regional Config and Control Plane in C++ and Go, establishing regional isolation serving 1M+ clients to ensure failures have regional blast radius, unblocking key GCP initiatives.',
           'Mentored junior engineers through regional turnup, design, and productionization.',
@@ -84,6 +99,7 @@ const experiences = [
     projects: [
       {
         name: '3D Geological Modeling (Surpac)',
+        link: 'https://www.3ds.com/products/geovia/surpac',
         points: [
           'Developed and maintained features a native C++ desktop modelling application, focusing on low-level memory efficiency, system stability, and large dataset handling.',
           'Integrated advanced point-cloud processing algorithms for density reduction and triangulation, enabling efficient handling and visualization of massive geological datasets.',
@@ -120,16 +136,16 @@ export const Experience: React.FC = () => {
         <div style={{ display: 'flex', justifyContent: 'space-between', minWidth: '600px', position: 'relative', margin: '0 auto', maxWidth: '800px' }}>
           {/* Horizontal Line */}
           <div style={{ position: 'absolute', height: '2px', background: 'linear-gradient(90deg, transparent, var(--border-color) 10%, var(--border-color) 90%, transparent)', left: '0', right: '0', top: '6px', zIndex: 0 }}></div>
-          
+
           {experiences.map((exp, i) => {
             const [start, end] = exp.period.split('-').map(s => s.trim());
             const startYear = start.split(' ').pop();
             const endYear = end ? end.split(' ').pop() : 'Present';
 
             return (
-              <div 
-                key={i} 
-                onClick={() => scrollToExperience(i)} 
+              <div
+                key={i}
+                onClick={() => scrollToExperience(i)}
                 style={{ cursor: 'pointer', textAlign: 'center', zIndex: 1, position: 'relative', flex: 1, padding: '0 10px', minWidth: '140px' }}
                 onMouseEnter={(e) => {
                   const dots = e.currentTarget.querySelectorAll('.nav-dot');
@@ -157,16 +173,16 @@ export const Experience: React.FC = () => {
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem', position: 'relative' }}>
-                  <div 
-                    className="nav-dot" 
+                  <div
+                    className="nav-dot"
                     style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--bg-color)', border: '2px solid var(--accent-primary)', transition: 'all 0.3s ease', zIndex: 2 }}
                   ></div>
-                  <div 
+                  <div
                     className="nav-line"
                     style={{ flex: 1, height: '4px', background: 'var(--bg-surface-hover)', margin: '0 -2px', transition: 'all 0.3s ease', zIndex: 1 }}
                   ></div>
-                  <div 
-                    className="nav-dot" 
+                  <div
+                    className="nav-dot"
                     style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'var(--bg-color)', border: '2px solid var(--accent-primary)', transition: 'all 0.3s ease', zIndex: 2 }}
                   ></div>
                 </div>
@@ -233,7 +249,13 @@ export const Experience: React.FC = () => {
                   <div key={j}>
                     <h4 style={{ color: 'var(--text-primary)', marginBottom: '1rem', fontSize: '1.1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                       <ChevronRight size={18} color="var(--accent-secondary)" />
-                      {proj.name}
+                      {proj.link ? (
+                        <a href={proj.link} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'inherit'}>
+                          {proj.name}
+                        </a>
+                      ) : (
+                        proj.name
+                      )}
                     </h4>
                     <ul style={{ listStyleType: 'none', paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                       {proj.points.map((point, k) => (
