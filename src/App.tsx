@@ -5,6 +5,7 @@ import { Terminal } from './components/Terminal';
 import { Experience } from './components/Experience';
 import { Publications } from './components/Publications';
 import { Contact } from './components/Contact';
+import { Projects } from './components/Projects';
 
 const App: React.FC = () => {
   return (
@@ -27,6 +28,11 @@ const App: React.FC = () => {
             <Route path="/publications" element={
                <div style={{ position: 'relative', zIndex: 1, paddingBottom: '4rem', paddingTop: '4rem' }}>
                  <Publications />
+               </div>
+            } />
+            <Route path="/projects" element={
+               <div style={{ position: 'relative', zIndex: 1, paddingBottom: '4rem', paddingTop: '4rem' }}>
+                 <Projects />
                </div>
             } />
             <Route path="/experience" element={

@@ -1,6 +1,6 @@
 import React from 'react';
 import { MeshBackground } from './MeshBackground';
-import { Code, Network, BookOpen, MessageSquare } from 'lucide-react';
+import { Code, Network, BookOpen, MessageSquare, FolderGit2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const Hero: React.FC = () => {
@@ -36,6 +36,10 @@ export const Hero: React.FC = () => {
             <Link to="/publications" className="btn btn-outline">
               <BookOpen size={20} />
               Publications
+            </Link>
+            <Link to="/projects" className="btn btn-outline">
+              <FolderGit2 size={20} />
+              Projects
             </Link>
             <Link to="/contact" className="btn btn-outline">
               <MessageSquare size={20} />
