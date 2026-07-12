@@ -6,10 +6,17 @@ import { Experience } from './components/Experience';
 import { Publications } from './components/Publications';
 import { Contact } from './components/Contact';
 import { Projects } from './components/Projects';
+import { useVisitLogger } from './hooks/useVisitLogger';
+
+const AnalyticsInitializer: React.FC = () => {
+  useVisitLogger();
+  return null;
+};
 
 const App: React.FC = () => {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <AnalyticsInitializer />
       <div style={{ position: 'relative', width: '100%', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         <main style={{ flex: 1 }}>
           <Routes>
